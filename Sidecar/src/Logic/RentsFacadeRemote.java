@@ -3,30 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logic;
+package Logic;
 
-import entities.Users;
+import entities.Rents;
 import java.util.List;
 import javax.ejb.Remote;
 
 /**
  *
- * @author sala_a
+ * @author estudiante
  */
 @Remote
-public interface UsersFacadeRemote {
+public interface RentsFacadeRemote {
 
-    void create(Users users);
+    void create(Rents rents);
 
-    void edit(Users users);
+    void edit(Rents rents);
 
-    void remove(Users users);
+    void remove(Rents rents);
 
-    Users find(Object id);
+    Rents find(Object id);
 
-    List<Users> findAll();
+    List<Rents> findAll();
 
-    List<Users> findRange(int[] range);
+    List<Rents> findRange(int[] range);
 
     int count();
     
