@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logic;
+package logica;
 
-import entities.Locations;
+import entities.Rents;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -14,19 +14,19 @@ import javax.ejb.Remote;
  * @author estudiante
  */
 @Remote
-public interface LocationsFacadeRemote {
+public interface RentsFacadeRemote {
 
-    void create(Locations locations);
+    void create(Rents rents);
 
-    void edit(Locations locations);
+    void edit(Rents rents);
 
-    void remove(Locations locations);
+    void remove(Rents rents);
 
-    Locations find(Object id);
+    Rents find(Object id);
 
-    List<Locations> findAll();
+    List<Rents> findAll();
 
-    List<Locations> findRange(int[] range);
+    List<Rents> findRange(int[] range);
 
     int count();
     
