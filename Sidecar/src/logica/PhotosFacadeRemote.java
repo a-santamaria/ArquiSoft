@@ -5,7 +5,7 @@
  */
 package Logica;
 
-import entities.Users;
+import entities.Photos;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -14,21 +14,20 @@ import javax.ejb.Remote;
  * @author estudiante
  */
 @Remote
-public interface UsersFacadeRemote {
+public interface PhotosFacadeRemote {
 
-    void create(Users users);
+    void create(Photos photos);
 
-    void edit(Users users);
+    void edit(Photos photos);
 
-    void remove(Users users);
+    void remove(Photos photos);
 
-    Users find(Object id);
+    Photos find(Object id);
 
-    List<Users> findAll();
+    List<Photos> findAll();
 
-    List<Users> findRange(int[] range);
+    List<Photos> findRange(int[] range);
 
     int count();
     
-    int logIn(String username, String password);
 }
