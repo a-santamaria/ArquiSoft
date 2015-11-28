@@ -37,5 +37,5 @@ public interface UsersFacadeRemote {
     
     List<Properties> getPropertiesVisitingList(String username);
     
-    int rentProperty(int id_property, String id_customer, String email, Date rental_date, int rental_time, String creditcard_type, String creditcard_numbre, String creditcard_holder);
+    int rentProperty(int id_property, String id_customer, String email, Date rental_date, int rental_time, String creditcard_type, String creditcard_number, String creditcard_holder);
 }
