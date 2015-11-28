@@ -6,6 +6,7 @@
 package logica;
 
 import entities.Users;
+import entities.VisitingList;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -31,4 +32,6 @@ public interface UsersFacadeRemote {
     int count();
     
     int logIn(String username, String password);
+    
+    List<VisitingList> getVisitingList(String username);
 }
