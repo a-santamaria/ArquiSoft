@@ -30,4 +30,6 @@ public interface RentsFacadeRemote {
 
     int count();
     
+    List<Rents> getActiveRents();
+    
 }
