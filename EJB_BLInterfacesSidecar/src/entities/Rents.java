@@ -7,6 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -19,6 +20,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -33,9 +36,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Rents.findByEmail", query = "SELECT r FROM Rents r WHERE r.email = :email"),
     @NamedQuery(name = "Rents.findByRentalDate", query = "SELECT r FROM Rents r WHERE r.rentalDate = :rentalDate"),
     @NamedQuery(name = "Rents.findByRentalTime", query = "SELECT r FROM Rents r WHERE r.rentalTime = :rentalTime"),
-    @NamedQuery(name = "Rents.findById", query = "SELECT r FROM Rents r WHERE r.id = :id")})
+    @NamedQuery(name = "Rents.findById", query = "SELECT r FROM Rents r WHERE r.id = :id"),
+    @NamedQuery(name = "Rents.findByCreditcardType", query = "SELECT r FROM Rents r WHERE r.creditcardType = :creditcardType"),
+    @NamedQuery(name = "Rents.findByCreditcardHolder", query = "SELECT r FROM Rents r WHERE r.creditcardHolder = :creditcardHolder"),
+    @NamedQuery(name = "Rents.findByCreditcardNumber", query = "SELECT r FROM Rents r WHERE r.creditcardNumber = :creditcardNumber"),
+    @NamedQuery(name = "Rents.findByEstado", query = "SELECT r FROM Rents r WHERE r.estado = :estado")})
 public class Rents implements Serializable {
     private static final long serialVersionUID = 1L;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 100)
     @Column(name = "EMAIL")
     private String email;
     @Column(name = "RENTAL_DATE")
@@ -46,8 +55,20 @@ public class Rents implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ID")
     private BigDecimal id;
+    @Size(max = 50)
+    @Column(name = "CREDITCARD_TYPE")
+    private String creditcardType;
+    @Size(max = 100)
+    @Column(name = "CREDITCARD_HOLDER")
+    private String creditcardHolder;
+    @Size(max = 18)
+    @Column(name = "CREDITCARD_NUMBER")
+    private String creditcardNumber;
+    @Column(name = "ESTADO")
+    private BigInteger estado;
     @JoinColumn(name = "ID_CUSTOMER", referencedColumnName = "USERNAME")
     @ManyToOne
     private Users idCustomer;
@@ -92,6 +113,38 @@ public class Rents implements Serializable {
 
     public void setId(BigDecimal id) {
         this.id = id;
+    }
+
+    public String getCreditcardType() {
+        return creditcardType;
+    }
+
+    public void setCreditcardType(String creditcardType) {
+        this.creditcardType = creditcardType;
+    }
+
+    public String getCreditcardHolder() {
+        return creditcardHolder;
+    }
+
+    public void setCreditcardHolder(String creditcardHolder) {
+        this.creditcardHolder = creditcardHolder;
+    }
+
+    public String getCreditcardNumber() {
+        return creditcardNumber;
+    }
+
+    public void setCreditcardNumber(String creditcardNumber) {
+        this.creditcardNumber = creditcardNumber;
+    }
+
+    public BigInteger getEstado() {
+        return estado;
+    }
+
+    public void setEstado(BigInteger estado) {
+        this.estado = estado;
     }
 
     public Users getIdCustomer() {
