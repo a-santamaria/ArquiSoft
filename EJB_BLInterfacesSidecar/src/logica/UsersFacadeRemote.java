@@ -5,6 +5,7 @@
  */
 package logica;
 
+import entities.Properties;
 import entities.Users;
 import entities.VisitingList;
 import java.util.List;
@@ -33,5 +34,5 @@ public interface UsersFacadeRemote {
     
     int logIn(String username, String password);
     
-    List<VisitingList> getVisitingList(String username);
+    List<Properties> getPropertiesVisitingList(String username);
 }
