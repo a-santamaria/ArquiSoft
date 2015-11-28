@@ -5,7 +5,13 @@
  */
 package logica;
 
+import entities.Properties;
+import entities.Rents;
 import entities.Users;
+import entities.VisitingList;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,6 +36,7 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
     
     @Override
     public int logIn(String username, String password) {
+        System.out.println("----Login Request");
         Users user = find(username);
         if(user == null){
             return -1;
@@ -39,4 +46,51 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
         }
         return 1;
     }
+
+ 
+    @Override
+    public List<Properties> getPropertiesVisitingList(String username) {
+        System.out.println("----getVisitingList request");
+       
+       Users user = find(username);
+       List<VisitingList> visitingListList = user.getVisitingListList();
+       visitingListList.size(); //<-- Solving lazy relationship
+       
+       List<Properties> properties = new ArrayList<>();
+       for (VisitingList vl: visitingListList ){
+          properties.add(vl.getIdProperty());
+       }
+       return properties; 
+    }
+
+    @Override
+    public int rentProperty(int id_property, String id_customer, String email, Date rental_date, int rental_time, String creditcard_type, String creditcard_number, String creditcard_holder) {
+        System.out.println("----- rent request");
+        RentsFacade rentsFacade = new RentsFacade();
+        PropertiesFacade propertiesFacade = new PropertiesFacade();
+        
+        Properties property = propertiesFacade.find(id_property);
+        
+        if(property != null){
+            System.out.println("---property founded");
+            Users user = find(id_customer);
+            
+            if(user != null){
+                System.out.println("---user founded");
+                Rents rent = new Rents();
+                rent.setIdProperty(property);
+                rent.setIdCustomer(user);
+                rent.setEmail(email);
+                rent.setRentalDate(rental_date);
+                rent.setRentalTime((short)rental_time);
+                rentsFacade.create(rent);
+                return 1;
+            }else{
+                return -2;
+            }
+        }else{
+            return -1;
+        }
+    }    
 }
+
