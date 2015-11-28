@@ -9,9 +9,12 @@ import entities.Properties;
 import entities.Rents;
 import entities.Users;
 import entities.VisitingList;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,7 +25,15 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFacadeRemote {
+    @EJB
+    private RentsFacade rentsFacade;
+    @EJB
+    private PropertiesFacade propertiesFacade;
+    @EJB
+    private TimerBean_rents_delete timerBean_rents_delete;
+    
     @PersistenceContext(unitName = "EJB_BLPU")
+    
     private EntityManager em;
 
     @Override
@@ -37,6 +48,7 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
     @Override
     public int logIn(String username, String password) {
         System.out.println("----Login Request");
+        timerBean_rents_delete.myTimer();
         Users user = find(username);
         if(user == null){
             return -1;
@@ -66,10 +78,7 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
     @Override
     public int rentProperty(int id_property, String id_customer, String email, Date rental_date, int rental_time, String creditcard_type, String creditcard_number, String creditcard_holder) {
         System.out.println("----- rent request");
-        RentsFacade rentsFacade = new RentsFacade();
-        PropertiesFacade propertiesFacade = new PropertiesFacade();
-        
-        Properties property = propertiesFacade.find(id_property);
+        Properties property = propertiesFacade.find(BigDecimal.valueOf(id_property));
         
         if(property != null){
             System.out.println("---property founded");
@@ -83,6 +92,10 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
                 rent.setEmail(email);
                 rent.setRentalDate(rental_date);
                 rent.setRentalTime((short)rental_time);
+                rent.setCreditcardHolder(creditcard_holder);
+                rent.setCreditcardType(creditcard_type);
+                rent.setCreditcardNumber(creditcard_number);
+                rent.setId(BigDecimal.valueOf(rentsFacade.count()));
                 rentsFacade.create(rent);
                 return 1;
             }else{
@@ -92,5 +105,6 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
             return -1;
         }
     }    
+    
 }
 
