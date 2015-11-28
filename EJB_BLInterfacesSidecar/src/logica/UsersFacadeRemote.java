@@ -8,6 +8,7 @@ package logica;
 import entities.Properties;
 import entities.Users;
 import entities.VisitingList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -35,4 +36,6 @@ public interface UsersFacadeRemote {
     int logIn(String username, String password);
     
     List<Properties> getPropertiesVisitingList(String username);
+    
+    int rentProperty(int id_property, String id_customer, String email, Date rental_date, int rental_time, String creditcard_type, String creditcard_numbre, String creditcard_holder);
 }
