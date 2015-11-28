@@ -86,6 +86,9 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
             
             if(user != null){
                 System.out.println("---user founded");
+                // VERIFICAR ENTIDAD FINANCIERA
+                
+                // -------------------------------
                 Rents rent = new Rents();
                 rent.setIdProperty(property);
                 rent.setIdCustomer(user);

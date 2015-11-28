@@ -6,6 +6,9 @@
 package logica;
 
 import entities.Rents;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -28,6 +31,17 @@ public class RentsFacade extends AbstractFacade<Rents> implements logica.RentsFa
 
     public RentsFacade() {
         super(Rents.class);
+    }
+
+    @Override
+    public List<Rents> getActiveRents() {
+        List<Rents> rents = findAll();
+        List<Rents> activeRents = new ArrayList<>();
+        for (Rents rent : rents) {
+            if(rent.getEstado().intValue() == 1)
+                activeRents.add(rent);
+        }
+        return activeRents;
     }
     
     
