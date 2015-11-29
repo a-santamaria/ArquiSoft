@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -28,24 +29,31 @@ public class MailManager {
 
     public void sendEmail(String email, String msg) throws MessagingException{
      
+        final String username = "stivenavila140@gmail.com";
+        final String password = "Stiv3n140";
+
         Properties props = new Properties();
-        props.put("mail.transport.protocol", "smtp");
-        props.put("mail.host", "smtp.gmail.com");
-        props.put("mail.user", "stivenavila140@gmail.com");
-        props.put("mail.password", "Stiv3n140");
-        props.put("mail.port", "587");
+        props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
 
-        Session mailSession = Session.getDefaultInstance(props, null);
-        Transport transport = mailSession.getTransport();
+        Session session = Session.getInstance(props,
+          new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                }
+          });
+        
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress("from-email@gmail.com"));
+        message.setRecipients(Message.RecipientType.TO,
+                InternetAddress.parse(email));
+        message.setSubject("Rent Contract");
+        message.setText(msg);
 
-        MimeMessage message = new MimeMessage(mailSession);
-        message.setSubject("This is a test");
-        message.setContent(msg, "text/plain");
-        message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+        Transport.send(message);
 
-        transport.connect();
-        transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
-        transport.close();
+        System.out.println("Done");
     }
 }

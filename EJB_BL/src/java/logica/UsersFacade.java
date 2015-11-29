@@ -107,13 +107,9 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
                 rent.setCreditcardNumber(creditcard_number);
                 rent.setId(BigDecimal.valueOf(rentsFacade.count()));
                 rentsFacade.create(rent);
-                try {
-                    // Send email
-                    System.out.println("---sending email");
-                    mailManager.sendEmail(email, "holaaaaa, queria decirte que fabi es gay");
-                } catch (MessagingException ex) {
-                    return -3;
-                }
+                // Send to queue
+                System.out.println("---sending to queue");
+                
                 // ----------
                 return 1;
             }else{

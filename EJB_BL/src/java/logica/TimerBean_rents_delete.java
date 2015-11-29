@@ -45,15 +45,4 @@ public class TimerBean_rents_delete {
             }
         }
     }
-
-    @Schedule(second = "*/1", minute="*",hour="*", persistent=false)
-    public void sendEmail() {
-        try {
-            System.out.println("enviando email");
-            mailManager.sendEmail("stiven140@hotmail.com", "prueba");
-        } catch (MessagingException ex) {
-            ex.printStackTrace();
-        }
-    }
-    
 }
