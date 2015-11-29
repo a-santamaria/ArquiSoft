@@ -6,14 +6,18 @@
 package logica;
 
 import entities.Rents;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.mail.MessagingException;
 
 /**
  *
@@ -22,7 +26,8 @@ import javax.ejb.LocalBean;
 @Stateless
 @LocalBean
 public class TimerBean_rents_delete {
-    
+    @EJB
+    private MailManager mailManager;
     @EJB
     private RentsFacade rentsFacade;
     
@@ -41,5 +46,14 @@ public class TimerBean_rents_delete {
         }
     }
 
+    @Schedule(second = "*/1", minute="*",hour="*", persistent=false)
+    public void sendEmail() {
+        try {
+            System.out.println("enviando email");
+            mailManager.sendEmail("stiven140@hotmail.com", "prueba");
+        } catch (MessagingException ex) {
+            ex.printStackTrace();
+        }
+    }
     
 }

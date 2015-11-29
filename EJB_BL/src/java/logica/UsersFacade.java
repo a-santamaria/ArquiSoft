@@ -9,13 +9,18 @@ import entities.Properties;
 import entities.Rents;
 import entities.Users;
 import entities.VisitingList;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.mail.MessagingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -25,6 +30,8 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFacadeRemote {
+    @EJB
+    private MailManager mailManager;
     @EJB
     private RentsFacade rentsFacade;
     @EJB
@@ -100,6 +107,14 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
                 rent.setCreditcardNumber(creditcard_number);
                 rent.setId(BigDecimal.valueOf(rentsFacade.count()));
                 rentsFacade.create(rent);
+                try {
+                    // Send email
+                    System.out.println("---sending email");
+                    mailManager.sendEmail(email, "holaaaaa, queria decirte que fabi es gay");
+                } catch (MessagingException ex) {
+                    return -3;
+                }
+                // ----------
                 return 1;
             }else{
                 return -2;
