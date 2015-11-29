@@ -17,9 +17,19 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.jms.Connection;
+import javax.jms.JMSConnectionFactory;
+import javax.jms.JMSContext;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Queue;
+import javax.jms.Session;
+import javax.jms.TextMessage;
 import javax.mail.MessagingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,8 +40,12 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFacadeRemote {
-    @EJB
-    private MailManager mailManager;
+    @Resource(mappedName = "jms/queueMails")
+    private Queue queueMails;
+    @Inject
+    @JMSConnectionFactory("jms/queueFactory")
+    private JMSContext context;
+    
     @EJB
     private RentsFacade rentsFacade;
     @EJB
@@ -109,7 +123,11 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
                 rentsFacade.create(rent);
                 // Send to queue
                 System.out.println("---sending to queue");
-                
+                try {
+                    sendJMSMessageToQueueMails(email+":"+String.valueOf(id_property));
+                } catch (JMSException ex) {
+                    Logger.getLogger(UsersFacade.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 // ----------
                 return 1;
             }else{
@@ -119,6 +137,13 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
             return -1;
         }
     }    
+
+    private void sendJMSMessageToQueueMails(String messageData) throws JMSException {
+        TextMessage msg = context.createTextMessage();
+        msg.setText(messageData);
+        context.createProducer().send(queueMails, msg);
+    }
+
     
 }
 

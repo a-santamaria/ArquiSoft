@@ -5,10 +5,7 @@
  */
 package logica;
 
-import static java.lang.ProcessBuilder.Redirect.to;
-import java.util.Date;
 import java.util.Properties;
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.mail.Message;
