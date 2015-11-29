@@ -29,7 +29,5 @@ public interface RentsFacadeRemote {
     List<Rents> findRange(int[] range);
 
     int count();
-    
-    List<Rents> getActiveRents();
-    
+        
 }
