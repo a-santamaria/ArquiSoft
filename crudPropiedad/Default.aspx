@@ -13,7 +13,6 @@
     
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="LinqDataSource1">
             <Columns>
-                <asp:CommandField ShowEditButton="True" />
                 <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" />
                 <asp:BoundField DataField="rooms" HeaderText="rooms" SortExpression="rooms" />
                 <asp:BoundField DataField="rent" HeaderText="rent" SortExpression="rent" />

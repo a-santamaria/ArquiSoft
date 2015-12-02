@@ -20,7 +20,7 @@ public partial class _Default : System.Web.UI.Page
         GridViewRow gvr = (GridViewRow)(((LinkButton)sender).Parent.Parent);
         int row = gvr.RowIndex;
 
-        int id = Convert.ToInt32(GridView1.Rows[row].Cells[1].Text);
+        int id = Convert.ToInt32(GridView1.Rows[row].Cells[0].Text);
 
         pFacade.delete(id);
         GridView1.DataBind();
@@ -33,8 +33,9 @@ public partial class _Default : System.Web.UI.Page
         GridViewRow gvr = (GridViewRow)(((LinkButton)sender).Parent.Parent);
         int row = gvr.RowIndex;
 
-        int id = Convert.ToInt32(GridView1.Rows[row].Cells[1].Text);
+        string id = GridView1.Rows[row].Cells[0].Text;
 
+        Response.Redirect("EditarPropiedad.aspx?id="+id);
         //System.Windows.Forms.MessageBox.Show("Soy edit " + id.ToString());
     }
 
