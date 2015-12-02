@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Database" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DatabaseConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="OPRS_DB" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=OPRS_DB;Integrated Security=True;Pooling=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="OPRS_DBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Properties" Member="Properties">
     <Type Name="Properties">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="rent" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="rooms" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rent" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="address" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
       <Column Name="type" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="id_owner" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
