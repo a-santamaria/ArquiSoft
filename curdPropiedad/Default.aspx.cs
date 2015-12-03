@@ -37,4 +37,9 @@ public partial class _Default : Page
         Response.Redirect("EditarPropiedad.aspx?id=" + id);
         //System.Windows.Forms.MessageBox.Show("Soy edit " + id.ToString());
     }
+
+    protected void create(object sender, EventArgs e)
+    {
+        Response.Redirect("CrearPropiedad.aspx");
+    }
 }

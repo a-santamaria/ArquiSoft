@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="EditarPropiedad.aspx.cs" Inherits="EditarPropiedad" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="CrearPropiedad.aspx.cs" Inherits="CrearPropiedad" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
@@ -6,23 +6,18 @@
      <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h2>Editar Propiedad</h2>
+                <h2>Crear Propiedad</h2>
             </hgroup>
         </div>
     </section>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" Runat="Server">
-
     <div>
         
        
         <asp:Table ID="Table1" runat="server">
             <asp:TableRow>
-                <asp:TableCell>
-                    <asp:Label ID="LabelId" runat="server" Text="id" />
-                </asp:TableCell><asp:TableCell>
-                    <asp:TextBox ID="TextBoxId" runat="server" ReadOnly="true"/>
-                </asp:TableCell></asp:TableRow><asp:TableRow>
+                
                 <asp:TableCell>
                     <asp:Label ID="LabelRooms" runat="server" Text="rooms" />
                 </asp:TableCell><asp:TableCell>
@@ -68,7 +63,7 @@
                     <asp:Label ID="LabelLocation" runat="server" Text="location" />
                 </asp:TableCell><asp:TableCell>
                     <asp:TextBox ID="TextBoxLocation" runat="server" />
-                </asp:TableCell></asp:TableRow></asp:Table><asp:Button ID="ButtonEdit" runat="server" Text="Editar" OnClick="edit" />
+                </asp:TableCell></asp:TableRow></asp:Table><asp:Button ID="ButtonCreate" runat="server" Text="Crear" OnClick="create" />
         <asp:Button ID="ButtonCancel" runat="server" Text="Cancelar" OnClick="cancel" />
 
 

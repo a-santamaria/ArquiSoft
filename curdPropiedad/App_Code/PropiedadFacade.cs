@@ -37,6 +37,26 @@ public class PropiedadFacade
         dc.SubmitChanges();
     }
 
+    public void create(int rooms, float rent, string address, string type,
+                     string id_owner, string location)
+    {
+        
+        DataClassesDataContext dc = new DataClassesDataContext();
+
+        Property prop = new Property();
+        
+        prop.rooms = rooms;
+        prop.rent = rent;
+        prop.address = address;
+        prop.type = type;
+        prop.id_owner = id_owner;
+        prop.location = location;
+        
+        dc.Properties.InsertOnSubmit(prop);
+
+        dc.SubmitChanges();
+    }
+
     public void delete(int id)
     {
         DataClassesDataContext dc = new DataClassesDataContext();
@@ -47,4 +67,6 @@ public class PropiedadFacade
         dc.Properties.DeleteOnSubmit(prop);
         dc.SubmitChanges();
     }
+
+
 }
