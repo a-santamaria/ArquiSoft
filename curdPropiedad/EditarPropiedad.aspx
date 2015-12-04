@@ -46,7 +46,7 @@
                 <asp:TableCell>
                     <asp:Label ID="LabelAddress" runat="server" Text="address" />
                 </asp:TableCell><asp:TableCell>
-                    <asp:TextBox ID="TextBoxAddress" runat="server" />
+                    <asp:TextBox ID="TextBoxAddress" runat="server" ReadOnly="true"/>
                 </asp:TableCell></asp:TableRow><asp:TableRow>
                 <asp:TableCell>
                     <asp:Label ID="LabelRent" runat="server" Text="rent" />

@@ -41,7 +41,21 @@
                 <asp:TableCell>
                     <asp:Label ID="LabelAddress" runat="server" Text="address" />
                 </asp:TableCell><asp:TableCell>
-                    <asp:TextBox ID="TextBoxAddress" runat="server" />
+
+                    <asp:DropDownList ID="DropDownListAdd1" runat="server">
+                        <asp:ListItem>Cll</asp:ListItem>
+                        <asp:ListItem>Cra</asp:ListItem>
+                        <asp:ListItem>Diag</asp:ListItem>
+                        <asp:ListItem>Av</asp:ListItem>
+                    </asp:DropDownList>
+
+                    <asp:TextBox ID="TextBoxAddress1" runat="server" Width="30"/>
+
+                    <asp:Label ID="lableAdd1" runat="server" Text=" #  "/>
+                    <asp:TextBox ID="TextBoxAddress2" runat="server" Width="30"/>
+                    <asp:Label ID="LabelAdd2" runat="server" Text=" - "/>
+                    <asp:TextBox ID="TextBoxAddress3" runat="server" Width="30"/>
+
                 </asp:TableCell></asp:TableRow><asp:TableRow>
                 <asp:TableCell>
                     <asp:Label ID="LabelRent" runat="server" Text="rent" />

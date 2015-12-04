@@ -21,7 +21,9 @@ public partial class CrearPropiedad : System.Web.UI.Page
     {
         try
         {
-            string address = TextBoxAddress.Text;
+            string address = DropDownListAdd1.SelectedValue + " " + 
+                             TextBoxAddress1.Text + " # " + TextBoxAddress2.Text
+                             + "-" + TextBoxAddress3.Text;
             string id_owner = TextBoxId_Owner.Text;
             int rooms = Int32.Parse(DropDownListRooms.SelectedValue);
             string type = DropDownListType.SelectedValue;

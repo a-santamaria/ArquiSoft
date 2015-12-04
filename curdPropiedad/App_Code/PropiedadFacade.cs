@@ -13,7 +13,7 @@ public class PropiedadFacade
 
     }
 
-    public Properties getProperty(int id)
+    public Property getProperty(int id)
     {
         DataClassesDataContext dc = new DataClassesDataContext();
         var result = from p in dc.Properties where p.Id == id select p;
@@ -26,7 +26,7 @@ public class PropiedadFacade
     {
         DataClassesDataContext dc = new DataClassesDataContext();
 
-        Properties result = (from p in dc.Properties where p.Id == id select p).SingleOrDefault();
+        Property result = (from p in dc.Properties where p.Id == id select p).SingleOrDefault();
         //System.Windows.Forms.MessageBox.Show(prop.rooms.ToString());
         result.rooms = rooms;
         result.rent = rent;
@@ -43,7 +43,7 @@ public class PropiedadFacade
         
         DataClassesDataContext dc = new DataClassesDataContext();
 
-        Properties prop = new Properties();
+        Property prop = new Property();
         
         prop.rooms = rooms;
         prop.rent = rent;
@@ -58,14 +58,14 @@ public class PropiedadFacade
         return prop.Id;
     }
 
-    public List<Properties> getProperties()
+    public List<Property> getProperties()
     {
         DataClassesDataContext dc = new DataClassesDataContext();
         var result = from p in dc.Properties select p;
-        List<Properties> lista = new List<Properties>();
+        List<Property> lista = new List<Property>();
         if(result != null)
         {
-            foreach (Properties p in result)
+            foreach (Property p in result)
             {
                 lista.Add(p);
             }
@@ -74,11 +74,11 @@ public class PropiedadFacade
         return lista;
     }
 
-    public List<Properties> getPropertiesBy(string categoria, string valor)
+    public List<Property> getPropertiesBy(string categoria, string valor)
     {
 
         DataClassesDataContext dc = new DataClassesDataContext();
-        List<Properties> lista = new List<Properties>();
+        List<Property> lista = new List<Property>();
         try
         {
             if (categoria == "id")
@@ -86,7 +86,7 @@ public class PropiedadFacade
                 var result = from p in dc.Properties where p.Id == Int32.Parse(valor) select p;
 
 
-                foreach (Properties p in result)
+                foreach (Property p in result)
                 {
                     lista.Add(p);
                 }
@@ -96,7 +96,7 @@ public class PropiedadFacade
                 var result = from p in dc.Properties where p.rooms == Int32.Parse(valor) select p;
 
 
-                foreach (Properties p in result)
+                foreach (Property p in result)
                 {
                     lista.Add(p);
                 }
@@ -106,7 +106,7 @@ public class PropiedadFacade
                 var result = from p in dc.Properties where p.rent == Int32.Parse(valor) select p;
 
 
-                foreach (Properties p in result)
+                foreach (Property p in result)
                 {
                     lista.Add(p);
                 }
@@ -116,7 +116,7 @@ public class PropiedadFacade
                 var result = from p in dc.Properties where p.address == valor select p;
 
 
-                foreach (Properties p in result)
+                foreach (Property p in result)
                 {
                     lista.Add(p);
                 }
@@ -126,7 +126,7 @@ public class PropiedadFacade
                 var result = from p in dc.Properties where p.type == valor select p;
 
 
-                foreach (Properties p in result)
+                foreach (Property p in result)
                 {
                     lista.Add(p);
                 }
@@ -136,7 +136,7 @@ public class PropiedadFacade
                 var result = from p in dc.Properties where p.id_owner == valor select p;
 
 
-                foreach (Properties p in result)
+                foreach (Property p in result)
                 {
                     lista.Add(p);
                 }
@@ -146,7 +146,7 @@ public class PropiedadFacade
                 var result = from p in dc.Properties where p.location == valor select p;
 
 
-                foreach (Properties p in result)
+                foreach (Property p in result)
                 {
                     lista.Add(p);
                 }
@@ -165,7 +165,7 @@ public class PropiedadFacade
         DataClassesDataContext dc = new DataClassesDataContext();
         var result = from p in dc.Properties where p.Id == id select p;
 
-        Properties prop = result.First();
+        Property prop = result.First();
 
         dc.Properties.DeleteOnSubmit(prop);
         dc.SubmitChanges();
@@ -175,7 +175,7 @@ public class PropiedadFacade
     public List<String> getLocationsNames()
     {
         DataClassesDataContext dc = new DataClassesDataContext();
-        var result = from l in dc.Locations select l.location;
+        var result = from l in dc.Locations select l.location1;
         List<String> lista = new List<String>();
         if(result != null)
         {
