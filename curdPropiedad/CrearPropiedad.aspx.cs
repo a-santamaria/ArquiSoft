@@ -34,7 +34,7 @@ public partial class CrearPropiedad : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-
+            System.Windows.Forms.MessageBox.Show("entre ex " + ex.Message);
         }
 
 

@@ -48,13 +48,7 @@
                 </asp:TableCell><asp:TableCell>
                     <asp:TextBox ID="TextBoxRent" runat="server" />
 
-                    <asp:RangeValidator id="RangeValidatorRent" runat="server"
-                        ControlToValidate="textboxRent"
-                        Operator="DataTypeCheck"
-                        Type="Double"
-                        ErrorMessage="Debe ser un número"
-                        Display="Dynamic"
-                         />
+                    
                 </asp:TableCell></asp:TableRow><asp:TableRow>
                 <asp:TableCell>
                     <asp:Label ID="LabelType" runat="server" Text="type" />

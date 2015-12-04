@@ -21,9 +21,12 @@ public partial class EditarPropiedad : System.Web.UI.Page
             TextBoxId.Text = property.Id.ToString();
             TextBoxAddress.Text = property.address;
             TextBoxId_Owner.Text = property.id_owner;
-            TextBoxRooms.Text = property.rooms.ToString();
-            TextBoxType.Text = property.type;
-            TextBoxLocation.Text = property.location;
+            DropDownListRooms.SelectedValue = property.rooms.ToString();
+            DropDownListType.SelectedValue = property.type;
+
+            DropDownListLocation.DataSource = pFacade.getLocationsNames();
+            DropDownListLocation.DataBind();
+
             TextBoxRent.Text = property.rent.ToString();
         }
 
@@ -36,10 +39,10 @@ public partial class EditarPropiedad : System.Web.UI.Page
             string address = TextBoxAddress.Text;
             int id = Int32.Parse(TextBoxId.Text);
             string id_owner = TextBoxId_Owner.Text;
-            int rooms = Int32.Parse(TextBoxRooms.Text);
-            string type = TextBoxType.Text;
+            int rooms = Int32.Parse(DropDownListRooms.SelectedValue);
+            string type = DropDownListType.SelectedValue;
             float rent = float.Parse(TextBoxRent.Text);
-            string location = TextBoxLocation.Text;
+            string location = DropDownListLocation.SelectedValue;
 
             pFacade.edit(id, rooms, rent, address, type, id_owner, location);
             string returnURL = "Default.aspx";

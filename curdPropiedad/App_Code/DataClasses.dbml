@@ -2,7 +2,7 @@
   <Connection Mode="WebSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=OPR_DB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="OPR_DBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Properties" Member="Properties">
     <Type Name="Properties">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" AutoSync="Never" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="rooms" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="rent" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="address" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
