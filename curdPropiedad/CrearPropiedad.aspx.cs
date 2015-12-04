@@ -25,7 +25,8 @@ public partial class CrearPropiedad : System.Web.UI.Page
             float rent = float.Parse(TextBoxRent.Text);
             string location = TextBoxLocation.Text;
 
-            pFacade.create(rooms, rent, address, type, id_owner, location);
+            int id = pFacade.create(rooms, rent, address, type, id_owner, location);
+            System.Windows.Forms.MessageBox.Show("Propiedad creda exitosamente con id "+ id);
             Response.Redirect("Default.aspx");
         }
         catch (Exception ex)

@@ -37,7 +37,7 @@ public class PropiedadFacade
         dc.SubmitChanges();
     }
 
-    public void create(int rooms, float rent, string address, string type,
+    public int create(int rooms, float rent, string address, string type,
                      string id_owner, string location)
     {
         
@@ -55,6 +55,7 @@ public class PropiedadFacade
         dc.Properties.InsertOnSubmit(prop);
 
         dc.SubmitChanges();
+        return prop.Id;
     }
 
     public List<Property> getProperties()

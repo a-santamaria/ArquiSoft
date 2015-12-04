@@ -26,6 +26,7 @@
                     <ItemTemplate>
                     <asp:LinkButton runat="server" ID="lnkViewDelete" 
                                     OnClick="delete" 
+                                    OnClientClick="return confirm('Eliminar?')"
                                     >Borrar</asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
@@ -50,8 +51,9 @@
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
+        <asp:Label ID="Label1" runat="server" Text="Label" Visible="False"></asp:Label>
         <br />
-        <asp:Button ID="ButtonCreate" runat="server" Text="Crear Propiedad" OnClick="create"/>
+        <asp:Button ID="ButtonBack" runat="server" Text="Atras" OnClick="back"/>
         <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="Properties" EnableDelete="True">
         </asp:LinqDataSource>
 </asp:Content>

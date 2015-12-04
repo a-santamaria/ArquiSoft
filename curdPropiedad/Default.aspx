@@ -23,7 +23,10 @@
         <asp:ListItem>id_owner</asp:ListItem>
     </asp:DropDownList>
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    <asp:Button ID="ButtonBuscar" runat="server" OnClick="buscar" Text="Buscar" />
     <br />
-    <asp:Button ID="ButtonBuscar" runat="server" OnClick="Buscar" Text="Buscar" />
+    <asp:Button ID="ButtonTodas" runat="server" OnClick="verTodas" Text="Ver Todas" />
+    <br />
+    <asp:Button ID="ButtonCrear" runat="server" OnClick="create" Text="Crear Propiedad"  />
 </asp:Content>
 

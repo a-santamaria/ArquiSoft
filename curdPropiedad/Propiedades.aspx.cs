@@ -8,10 +8,71 @@ using System.Web.UI.WebControls;
 public partial class _Default : Page
 {
     PropiedadFacade pFacade;
+    List<Property> propiedades;
     protected void Page_Load(object sender, EventArgs e)
     {
-        List<Property> propiedades = new List<Property>();
+        propiedades = new List<Property>();
         pFacade = new PropiedadFacade();
+        Boolean searchHasProperties = updateBusqueda();
+        if (!IsPostBack)
+        {
+            if (!searchHasProperties)
+            {
+                System.Windows.Forms.MessageBox.Show("La busqueda no retornó resultados");
+                Response.Redirect("Default.aspx");
+            }
+            else
+            {
+                GridView1.DataSource = propiedades;
+                GridView1.DataBind();
+            }
+        }
+        
+
+        
+    }
+
+    protected void delete(object sender, EventArgs e)
+    {
+        LinkButton b = sender as LinkButton;
+        GridViewRow gvr = (GridViewRow)(((LinkButton)sender).Parent.Parent);
+        int row = gvr.RowIndex;
+
+        int id = Convert.ToInt32(GridView1.Rows[row].Cells[0].Text);
+
+        pFacade.delete(id);
+        if (!updateBusqueda())
+        {
+            Label1.Text = "No Hay propiedades con los campos de busqueda";
+            Label1.Visible = true;
+        }
+        GridView1.DataSource = propiedades;
+        GridView1.DataBind();
+    }
+
+    protected void edit(object sender, EventArgs e)
+    {
+        LinkButton b = sender as LinkButton;
+        GridViewRow gvr = (GridViewRow)(((LinkButton)sender).Parent.Parent);
+        int row = gvr.RowIndex;
+
+        string id = GridView1.Rows[row].Cells[0].Text;
+        HttpCookie cookieReturnURL = new HttpCookie("returnURL");
+        cookieReturnURL.Value = Request.Url.AbsoluteUri;
+        cookieReturnURL.Expires = DateTime.Now.AddHours(1);
+        Response.SetCookie(cookieReturnURL);
+
+        Response.Redirect("EditarPropiedad.aspx?id=" + id);
+    }
+
+    protected void back(object sender, EventArgs e)
+    {
+        Response.Redirect("Default.aspx");
+    }
+
+    protected Boolean updateBusqueda()
+    {
+        propiedades.Clear();
         if (Request.QueryString["id"] != null)
         {
             propiedades = pFacade.getPropertiesBy("id", Request.QueryString["id"]);
@@ -40,49 +101,18 @@ public partial class _Default : Page
         {
             propiedades = pFacade.getPropertiesBy("location", Request.QueryString["location"]);
         }
+        else
+        {
+            propiedades = pFacade.getProperties();
+        }
 
         if (propiedades.Count == 0)
         {
-            Focus();
-            System.Windows.Forms.MessageBox.Show("La busqueda no retorno ningun resultado", "Busqueda");
-            
-            Response.Redirect("Default.aspx");
+            return false;
         }
         else
         {
-            GridView1.DataSource = propiedades;
-            GridView1.DataBind();
+            return true;
         }
-
-    }
-
-    protected void delete(object sender, EventArgs e)
-    {
-        LinkButton b = sender as LinkButton;
-        GridViewRow gvr = (GridViewRow)(((LinkButton)sender).Parent.Parent);
-        int row = gvr.RowIndex;
-
-        int id = Convert.ToInt32(GridView1.Rows[row].Cells[0].Text);
-
-        pFacade.delete(id);
-        GridView1.DataBind();
-        //System.Windows.Forms.MessageBox.Show("Soy Delete " + id.ToString());
-    }
-
-    protected void edit(object sender, EventArgs e)
-    {
-        LinkButton b = sender as LinkButton;
-        GridViewRow gvr = (GridViewRow)(((LinkButton)sender).Parent.Parent);
-        int row = gvr.RowIndex;
-
-        string id = GridView1.Rows[row].Cells[0].Text;
-
-        Response.Redirect("EditarPropiedad.aspx?id=" + id);
-        //System.Windows.Forms.MessageBox.Show("Soy edit " + id.ToString());
-    }
-
-    protected void create(object sender, EventArgs e)
-    {
-        Response.Redirect("CrearPropiedad.aspx");
     }
 }

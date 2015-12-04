@@ -42,7 +42,13 @@ public partial class EditarPropiedad : System.Web.UI.Page
             string location = TextBoxLocation.Text;
 
             pFacade.edit(id, rooms, rent, address, type, id_owner, location);
-            Response.Redirect("Default.aspx");
+            string returnURL = "Default.aspx";
+            if (Request.Cookies["returnURL"] != null)
+            {
+
+                returnURL = Request.Cookies["returnURL"].Value;
+            }
+            Response.Redirect(returnURL);
         }
         catch (Exception ex)
         {
@@ -54,6 +60,12 @@ public partial class EditarPropiedad : System.Web.UI.Page
 
     protected void cancel(object sender, EventArgs e)
     {
-        Response.Redirect("Default.aspx");
+        string returnURL = "Default.aspx";
+        if (Request.Cookies["returnURL"] != null)
+        {
+            
+            returnURL = Request.Cookies["returnURL"].Value;
+        }
+        Response.Redirect(returnURL);
     }
 }
