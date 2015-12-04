@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class EditarPropiedad : System.Web.UI.Page
 {
     PropiedadFacade pFacade;
-    Property property;
+    Properties property;
     protected void Page_Load(object sender, EventArgs e)
     {
         pFacade = new PropiedadFacade();

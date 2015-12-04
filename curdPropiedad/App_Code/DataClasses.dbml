@@ -1,14 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="OPRS_DB2" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=OPRS_DB2;Integrated Security=True;Pooling=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="OPRS_DB2ConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="OPR_DB" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=OPR_DB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="OPR_DBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Properties" Member="Properties">
-    <Type Name="Property">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    <Type Name="Properties">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="rooms" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="rent" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="address" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
       <Column Name="type" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="id_owner" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
       <Column Name="location" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Locations" Member="Locations">
+    <Type Name="Locations">
+      <Column Name="location" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

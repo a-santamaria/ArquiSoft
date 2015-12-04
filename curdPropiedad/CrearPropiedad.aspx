@@ -21,15 +21,22 @@
                 <asp:TableCell>
                     <asp:Label ID="LabelRooms" runat="server" Text="rooms" />
                 </asp:TableCell><asp:TableCell>
-                    <asp:TextBox ID="TextBoxRooms" runat="server" />
+                    
+                     <asp:DropDownList ID="DropDownListRooms" runat="server">
+                        <asp:ListItem>1</asp:ListItem>
+                        <asp:ListItem>2</asp:ListItem>
+                        <asp:ListItem>3</asp:ListItem>
+                        <asp:ListItem>4</asp:ListItem>
+                        <asp:ListItem>5</asp:ListItem>
+                        <asp:ListItem>6</asp:ListItem>
+                        <asp:ListItem>7</asp:ListItem>
+                        <asp:ListItem>8</asp:ListItem>
+                        <asp:ListItem>9</asp:ListItem>
+                        <asp:ListItem>10</asp:ListItem>
+                        <asp:ListItem>11</asp:ListItem>
+                        <asp:ListItem>12</asp:ListItem>
+                    </asp:DropDownList>
 
-                    <asp:RangeValidator id="RangeValidatorRooms" runat="server"
-                        ControlToValidate="textboxRooms"
-                        Operator="DataTypeCheck"
-                        Type="Double"
-                        ErrorMessage="Debe ser un número"
-                        Display="Dynamic"
-                         />
                 </asp:TableCell></asp:TableRow><asp:TableRow>
                 <asp:TableCell>
                     <asp:Label ID="LabelAddress" runat="server" Text="address" />
@@ -52,7 +59,12 @@
                 <asp:TableCell>
                     <asp:Label ID="LabelType" runat="server" Text="type" />
                 </asp:TableCell><asp:TableCell>
-                    <asp:TextBox ID="TextBoxType" runat="server" />
+                    
+                    <asp:DropDownList ID="DropDownListType" runat="server">
+                        <asp:ListItem>apto</asp:ListItem>
+                        <asp:ListItem>casa</asp:ListItem>
+                    </asp:DropDownList>
+
                 </asp:TableCell></asp:TableRow><asp:TableRow>
                 <asp:TableCell>
                     <asp:Label ID="LabelId_Owner" runat="server" Text="id_Owner" />
@@ -62,7 +74,8 @@
                 <asp:TableCell>
                     <asp:Label ID="LabelLocation" runat="server" Text="location" />
                 </asp:TableCell><asp:TableCell>
-                    <asp:TextBox ID="TextBoxLocation" runat="server" />
+                    <asp:DropDownList ID="DropDownListLocation" runat="server">
+                    </asp:DropDownList>
                 </asp:TableCell></asp:TableRow></asp:Table><asp:Button ID="ButtonCreate" runat="server" Text="Crear" OnClick="create" />
         <asp:Button ID="ButtonCancel" runat="server" Text="Cancelar" OnClick="cancel" />
 

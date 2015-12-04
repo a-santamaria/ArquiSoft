@@ -12,6 +12,9 @@ public partial class CrearPropiedad : System.Web.UI.Page
     {
         pFacade = new PropiedadFacade();
 
+        DropDownListLocation.DataSource = pFacade.getLocationsNames();
+        DropDownListLocation.DataBind();
+
     }
 
     protected void create(object sender, EventArgs e)
@@ -20,10 +23,10 @@ public partial class CrearPropiedad : System.Web.UI.Page
         {
             string address = TextBoxAddress.Text;
             string id_owner = TextBoxId_Owner.Text;
-            int rooms = Int32.Parse(TextBoxRooms.Text);
-            string type = TextBoxType.Text;
+            int rooms = Int32.Parse(DropDownListRooms.SelectedValue);
+            string type = DropDownListType.SelectedValue;
             float rent = float.Parse(TextBoxRent.Text);
-            string location = TextBoxLocation.Text;
+            string location = DropDownListLocation.SelectedValue;
 
             int id = pFacade.create(rooms, rent, address, type, id_owner, location);
             System.Windows.Forms.MessageBox.Show("Propiedad creda exitosamente con id "+ id);
