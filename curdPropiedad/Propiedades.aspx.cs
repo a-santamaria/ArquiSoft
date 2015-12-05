@@ -37,6 +37,7 @@ public partial class _Default : Page
         LinkButton b = sender as LinkButton;
         GridViewRow gvr = (GridViewRow)(((LinkButton)sender).Parent.Parent);
         int row = gvr.RowIndex;
+        
 
         int id = Convert.ToInt32(GridView1.Rows[row].Cells[0].Text);
 

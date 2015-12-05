@@ -2,7 +2,7 @@
 <definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://integration/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="WebServiceSNR" targetNamespace="http://integration/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <xsd:schema>
-      <xsd:import schemaLocation="http://10.5.2.99:8080/WA_SNR/WebServiceSNR?xsd=1" namespace="http://integration/" />
+      <xsd:import schemaLocation="http://10.5.2.152:41462/WA_SNR/WebServiceSNR?xsd=1" namespace="http://integration/" />
     </xsd:schema>
   </types>
   <message name="remove">
@@ -124,7 +124,7 @@
   </binding>
   <service name="WebServiceSNR">
     <port name="WebServiceSNRPort" binding="tns:WebServiceSNRPortBinding">
-      <soap:address location="http://10.5.2.99:8080/WA_SNR/WebServiceSNR" />
+      <soap:address location="http://10.5.2.152:41462/WA_SNR/WebServiceSNR" />
     </port>
   </service>
 </definitions>

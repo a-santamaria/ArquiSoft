@@ -35,16 +35,24 @@ public class PropiedadFacade
         result.id_owner = id_owner;
         result.location = location;
         dc.SubmitChanges();
+
+
+        WebServiceProperties.WebServiceProperties proxy2 = new WebServiceProperties.WebServiceProperties();
+        
+        int re = proxy2.editP(result.Id, (double)result.rent, (int)result.rooms, result.address.Trim(),
+                                result.type.Trim(), result.id_owner.Trim(), result.location.Trim());
+        //System.Windows.Forms.MessageBox.Show("voya a editar ->" + result.id_owner + "<- retorne " + re);
     }
 
     public int create(int rooms, float rent, string address, string type,
                      string id_owner, string location)
     {
 
-        WebReferenceSNR.WebServiceSNR proxy = new WebReferenceSNR.WebServiceSNR();
+        WebReferenceSNR2.WebServiceSNR proxy = new WebReferenceSNR2.WebServiceSNR();
         //System.Windows.Forms.MessageBox.Show("->" + address + "<-");
         Boolean b = proxy.find(address);
-
+        //Boolean b = true;
+        //System.Windows.Forms.MessageBox.Show("ws 1 = " + b.ToString());
         if(b)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -61,6 +69,12 @@ public class PropiedadFacade
             dc.Properties.InsertOnSubmit(prop);
 
             dc.SubmitChanges();
+            //System.Windows.Forms.MessageBox.Show("commit");
+            WebServiceProperties.WebServiceProperties proxy2 = new WebServiceProperties.WebServiceProperties();
+            //System.Windows.Forms.MessageBox.Show("ws ");
+            int re = proxy2.createP(prop.Id, (double)prop.rent, (int)prop.rooms, prop.address, 
+                                    prop.type, prop.id_owner, prop.location);
+            //System.Windows.Forms.MessageBox.Show("ws ya");
             return prop.Id;
         }
         else
@@ -184,6 +198,12 @@ public class PropiedadFacade
 
         dc.Properties.DeleteOnSubmit(prop);
         dc.SubmitChanges();
+
+
+        WebServiceProperties.WebServiceProperties proxy2 = new WebServiceProperties.WebServiceProperties();
+        
+        proxy2.removeP(prop.Id);
+
     }
 
 
