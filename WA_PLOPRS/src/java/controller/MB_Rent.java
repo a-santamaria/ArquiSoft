@@ -34,12 +34,12 @@ public class MB_Rent {
     
     
     RentsFacadeRemote rentsFacadeRemote = null;
-    private String id_rent;
-    private String id_customer;
-    private String email;
-    private String rent_property;
-    private String date;
-    private String time;
+    private String id_rent="";
+    private String id_customer="";
+    private String email="";
+    private String rent_property="";
+    private String date="";
+    private String time="";
     
     /**
      * Creates a new instance of MB_Rent
@@ -80,19 +80,17 @@ public class MB_Rent {
         try {  
             //FileInputStream input = new FileInputStream(file);  
             out = response.getOutputStream();  
-            int i = 0;  
-            String renta="|adasdsad|";
             //while ((i = input.read(buffer)) != -1) {  
-                out.println("Contrado de arendamiento");
-                out.println("Se arrienda al cliente: ");  
-                out.println("ID cliente"+this.id_customer); 
-                out.println("E-mail cliente"+this.email); 
-                out.println("La propidad:"); 
-                out.println("ID Porpiedad"+this.rent_property); 
-                out.println("Fecha de la renta :"+this.date); 
-                out.println("Tiempo de la renta:"+this.time); 
-                out.flush();  
-            //}  
+            out.println("Contrado de arendamiento");
+            out.println("Se arrienda al cliente: ");  
+            /*out.println("ID cliente"+this.id_customer); 
+            out.println("E-mail cliente"+this.email); 
+            out.println("La propidad:"); 
+            out.println("ID Porpiedad"+this.rent_property); 
+            out.println("Fecha de la renta :"+this.date); 
+            out.println("Tiempo de la renta:"+this.time);*/ 
+            out.flush();  
+        //}  
             FacesContext.getCurrentInstance().getResponseComplete();  
         } catch (IOException err) {  
             err.printStackTrace();  
