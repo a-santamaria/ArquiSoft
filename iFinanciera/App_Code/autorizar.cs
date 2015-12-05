@@ -23,5 +23,28 @@ public class autorizar : System.Web.Services.WebService {
     public string HelloWorld() {
         return "Hola a todos";
     }
+
+
+     [WebMethod]
+    public bool autorizarPago(string type, string number, string holder, int amountPay)
+    {
+        DataClassesDataContext dc = new DataClassesDataContext();
+   
+        CreditCard c = (from s in dc.CreditCard where s.type == type && s.number ==number && s.holder == holder select s).SingleOrDefault();
+        if (c == null)            return false;
+        if (c.amount < amountPay) return false;
+
+        c.amount = c.amount - amountPay;
+        dc.CreditCard.InsertOnSubmit(c);
+
+        Payments p = new Payments();
+        p.Amount = amountPay;
+        p.IdCreditCard = c.IdCreditCard;
+        dc.Payments.InsertOnSubmit(p);
+
+
+        dc.SubmitChanges();
+        return true;
+    }
     
 }
