@@ -45,8 +45,8 @@
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul>
-                                <li><a id="registerLink" runat="server" href="~/Account/Register.aspx">Register</a></li>
-                                <li><a id="loginLink" runat="server" href="~/Account/Login.aspx">Log in</a></li>
+                                <li><a id="registerLink" runat="server" href="~/Account/Register.aspx" visible="false">Register</a></li>
+                                <li><a id="loginLink" runat="server" href="~/Account/Login.aspx" visible="false">Log in</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
@@ -61,9 +61,8 @@
                 </section>
                 <nav>
                     <ul id="menu">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About.aspx">About</a></li>
-                        <li><a runat="server" href="~/Contact.aspx">Contact</a></li>
+                        <li><a runat="server" href="~/">Buscar</a></li>
+                        <li><a runat="server" href="CrearPropiedad.aspx">Crear</a></li>
                     </ul>
                 </nav>
             </div>

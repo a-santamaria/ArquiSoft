@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://integration/" targetNamespace="http://integration/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="count" type="tns:count" />
+  <xs:element name="countResponse" type="tns:countResponse" />
+  <xs:element name="create" type="tns:create" />
+  <xs:element name="edit" type="tns:edit" />
+  <xs:element name="find" type="tns:find" />
+  <xs:element name="findAll" type="tns:findAll" />
+  <xs:element name="findAllResponse" type="tns:findAllResponse" />
+  <xs:element name="findRange" type="tns:findRange" />
+  <xs:element name="findRangeResponse" type="tns:findRangeResponse" />
+  <xs:element name="findResponse" type="tns:findResponse" />
+  <xs:element name="remove" type="tns:remove" />
+  <xs:complexType name="edit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="entity" type="tns:enabledproperties" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="enabledproperties">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address" type="xs:string" />
+      <xs:element minOccurs="0" name="enabled" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="create">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="entity" type="tns:enabledproperties" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findRange">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="range" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findRangeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:enabledproperties" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="find">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="count">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="countResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="remove">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="entity" type="tns:enabledproperties" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findAll">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="findAllResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:enabledproperties" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

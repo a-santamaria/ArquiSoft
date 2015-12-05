@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="OPR_DB2" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=OPR_DB2;Integrated Security=True;Pooling=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="OPR_DB2ConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="OPR_DB3" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=OPR_DB3;Integrated Security=True;Pooling=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="OPR_DB3ConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Properties" Member="Properties">
-    <Type Name="Property">
+    <Type Name="Properties">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="rooms" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="rent" Type="System.Double" DbType="Float" CanBeNull="true" />
@@ -12,8 +12,8 @@
     </Type>
   </Table>
   <Table Name="dbo.Locations" Member="Locations">
-    <Type Name="Location">
-      <Column Name="location" Member="location1" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    <Type Name="Locations">
+      <Column Name="location" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

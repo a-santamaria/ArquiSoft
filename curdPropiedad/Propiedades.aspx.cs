@@ -8,10 +8,10 @@ using System.Web.UI.WebControls;
 public partial class _Default : Page
 {
     PropiedadFacade pFacade;
-    List<Property> propiedades;
+    List<Properties> propiedades;
     protected void Page_Load(object sender, EventArgs e)
     {
-        propiedades = new List<Property>();
+        propiedades = new List<Properties>();
         pFacade = new PropiedadFacade();
         Boolean searchHasProperties = updateBusqueda();
         if (!IsPostBack)
