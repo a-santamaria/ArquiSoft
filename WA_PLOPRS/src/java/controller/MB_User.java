@@ -64,7 +64,6 @@ public class MB_User implements Serializable {
     
     public String logIn(){
         System.out.println("------Iniciando sesión");
-        List<Users> users = usersFacadeRemote.findAll();
         int role = usersFacadeRemote.logIn(username, password);
         if(role == -1){
             System.out.println("No Logeado");

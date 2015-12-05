@@ -17,11 +17,12 @@ import logica.RentsFacadeRemote;
  */
 public class ConnectServer {
     
+    public static String ip="192.168.0.191";
+    
     public static UsersFacadeRemote connetServerUsersFacadeRemote() throws NamingException{
         System.out.println("-------accediendo al bean");
         Properties p = new Properties();
-        p.put("org.omg.CORBA.ORBInitialHost", "10.5.2.99");
-        //p.put("org.omg.CORBA.ORBInitialHost", "10.6.7.146");
+        p.put("org.omg.CORBA.ORBInitialHost", ip);
         p.put("org.omg.CORBA.ORBInitialPort", "3700");
         InitialContext ctx = new InitialContext(p);
         return (UsersFacadeRemote)ctx.lookup("java:global/EJB_BL/UsersFacade");
@@ -31,8 +32,7 @@ public class ConnectServer {
     public static RentsFacadeRemote connetServerRentsFacadeRemote() throws NamingException{
         System.out.println("-------accediendo al bean");
         Properties p = new Properties();
-        p.put("org.omg.CORBA.ORBInitialHost", "10.5.2.99");
-        //p.put("org.omg.CORBA.ORBInitialHost", "10.6.7.146");
+        p.put("org.omg.CORBA.ORBInitialHost", ip);
         p.put("org.omg.CORBA.ORBInitialPort", "3700");
         InitialContext ctx = new InitialContext(p);
         return (RentsFacadeRemote)ctx.lookup("java:global/EJB_BL/RentsFacade");

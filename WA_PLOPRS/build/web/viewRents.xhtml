@@ -9,9 +9,11 @@
     <h:body>
         <!--  <h:inputText value="#{(param['id'])}" />-->
         <h:form  >
-          
+            
             <h:outputText value="#{mB_Rent.updateIdRent()}" />
-       
+            <br/>
+            <h:commandButton value="Descargar Renta" action="#{mB_Rent.downloadFile}" />
+
         </h:form>
             
         
