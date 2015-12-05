@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            E-mail: <h:inputText value = "#{mB_User.email}" id = "email"/>
+            <br/>
+            Rental time: <h:inputText value = "#{mB_User.rental_time}" id = "rental_time"/>
+            <br/>
+            Creditcard type: <h:inputText value = "#{mB_User.creditcard_type}" id = "creditcard_type"/>
+            <br/>
+            Creditcard number: <h:inputText value = "#{mB_User.creditcard_number}" id = "creditcard_number"/>
+            <br/>
+            Creditcard holder: <h:inputText value = "#{mB_User.creditcard_holder}" id = "creditcard_holder"/>
+            <br/>
+            Month of the expiry date: <h:inputText  id = "monthExpiry"/>
+            <br/>
+            Year of the expiry date: <h:inputText id = "yearExpiry"/>
+            <br/>
+            <h:commandButton value="Create Rent" action="#{mB_User.createRent()}"/>
+            
+            
+        </h:form>
+    </h:body>
+</html>
+
