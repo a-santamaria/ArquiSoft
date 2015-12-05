@@ -30,6 +30,7 @@ import javax.jms.Message;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
+import javax.jms.Topic;
 import javax.mail.MessagingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -45,6 +46,12 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
     @Inject
     @JMSConnectionFactory("jms/queueFactory")
     private JMSContext context;
+    
+    @Resource(mappedName = "jms/topicRents")
+    private Topic topicRents;
+    @Inject
+    @JMSConnectionFactory("jms/topicRentsFactory")
+    private JMSContext contextFactory;
     
     @EJB
     private RentsFacade rentsFacade;
@@ -108,28 +115,45 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
             if(user != null){
                 System.out.println("---user founded");
                 // VERIFICAR ENTIDAD FINANCIERA
-                
+                boolean autorizarPago = true;//autorizarPago(creditcard_type, creditcard_number, creditcard_holder, rental_time);
                 // -------------------------------
-                Rents rent = new Rents();
-                rent.setIdProperty(property);
-                rent.setIdCustomer(user);
-                rent.setEmail(email);
-                rent.setRentalDate(rental_date);
-                rent.setRentalTime((short)rental_time);
-                rent.setCreditcardHolder(creditcard_holder);
-                rent.setCreditcardType(creditcard_type);
-                rent.setCreditcardNumber(creditcard_number);
-                rent.setId(BigDecimal.valueOf(rentsFacade.count()));
-                rentsFacade.create(rent);
-                // Send to queue
-                System.out.println("---sending to queue");
-                try {
-                    sendJMSMessageToQueueMails(email+":"+String.valueOf(id_property));
-                } catch (JMSException ex) {
-                    Logger.getLogger(UsersFacade.class.getName()).log(Level.SEVERE, null, ex);
+                if(autorizarPago){
+                    Rents rent = new Rents();
+                    rent.setIdProperty(property);
+                    rent.setIdCustomer(user);
+                    rent.setEmail(email);
+                    rent.setRentalDate(rental_date);
+                    rent.setRentalTime((short)rental_time);
+                    rent.setCreditcardHolder(creditcard_holder);
+                    rent.setCreditcardType(creditcard_type);
+                    rent.setCreditcardNumber(creditcard_number);
+                    rent.setId(BigDecimal.valueOf(rentsFacade.count()));
+                    rentsFacade.create(rent);
+                    // Send to queue
+                    System.out.println("---sending to queue");
+
+                    try {
+                        sendJMSMessageToQueueMails(email+":"+String.valueOf(id_property));
+                    } catch (JMSException ex) {
+                        Logger.getLogger(UsersFacade.class.getName()).log(Level.SEVERE, null, ex);
+                        return -3;
+                    }
+                    // ----------
+                    // Send to topic
+                    System.out.println("---sending to topic");
+
+                    try {
+                        sendJMSMessageToTopicRents(rent);
+                    } catch (JMSException ex) {
+                        Logger.getLogger(UsersFacade.class.getName()).log(Level.SEVERE, null, ex);
+                        return -4;
+                    }
+                    // ----------
+                    return 1;
+                }else{
+                    System.out.println("---payment dont accepted");
+                    return -3;
                 }
-                // ----------
-                return 1;
             }else{
                 return -2;
             }
@@ -144,6 +168,19 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
         context.createProducer().send(queueMails, msg);
     }
 
+    private void sendJMSMessageToTopicRents(Rents rentNotification) throws JMSException {
+        /*MapMessage msg = contextTopic.createMapMessage();
+        msg.setInt("id_property", rentNotification.getIdProperty().getId().intValue());
+        msg.setString("id_customer", rentNotification.getIdCustomer().getUsername());
+        msg.setString("email", rentNotification.getEmail());
+        msg.setShort("rental_time", rentNotification.getRentalTime());
+        msg.setString("rental_date", rentNotification.getRentalDate().toString());
+        msg.setString("creditcard_holder", rentNotification.getCreditcardHolder());
+        msg.setString("creditcard_type", rentNotification.getCreditcardType());
+        msg.setString("creditcard_number", rentNotification.getCreditcardNumber());
+        msg.setInt("id_rent", rentNotification.getId().intValue());
+        contextTopic.createProducer().send(topicRents, msg);*/
+    }
     
 }
 
