@@ -8,10 +8,10 @@
         <elementListCompartment Id="3d7e587c-bdc3-47f1-aa00-c4c9aba650f6" absoluteBounds="0.89000000000000012, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="3fcf586c-85db-40f1-82db-49431e5043a7" absoluteBounds="3.625, 2.125, 2, 1.3862939453125">
+    <classShape Id="58ebbbd5-63eb-45b5-bb3e-506b43498f8b" absoluteBounds="4.25, 2.25, 2, 1.3862939453125">
       <DataClassMoniker Name="/DataClassesDataContext/Payments" />
       <nestedChildShapes>
-        <elementListCompartment Id="7ad6c359-d988-47ba-9f4d-b562c05500bf" absoluteBounds="3.64, 2.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4dc80ef7-703c-42a9-b8bd-632daa5461b3" absoluteBounds="4.265, 2.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
