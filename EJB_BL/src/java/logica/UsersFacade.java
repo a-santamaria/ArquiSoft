@@ -26,6 +26,7 @@ import javax.jms.Connection;
 import javax.jms.JMSConnectionFactory;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
+import javax.jms.MapMessage;
 import javax.jms.Message;
 import javax.jms.Queue;
 import javax.jms.Session;
@@ -51,7 +52,7 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
     private Topic topicRents;
     @Inject
     @JMSConnectionFactory("jms/topicRentsFactory")
-    private JMSContext contextFactory;
+    private JMSContext contextTopic;
     
     @EJB
     private RentsFacade rentsFacade;
@@ -169,7 +170,7 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
     }
 
     private void sendJMSMessageToTopicRents(Rents rentNotification) throws JMSException {
-        /*MapMessage msg = contextTopic.createMapMessage();
+        MapMessage msg = contextTopic.createMapMessage();
         msg.setInt("id_property", rentNotification.getIdProperty().getId().intValue());
         msg.setString("id_customer", rentNotification.getIdCustomer().getUsername());
         msg.setString("email", rentNotification.getEmail());
@@ -179,7 +180,7 @@ public class UsersFacade extends AbstractFacade<Users> implements logica.UsersFa
         msg.setString("creditcard_type", rentNotification.getCreditcardType());
         msg.setString("creditcard_number", rentNotification.getCreditcardNumber());
         msg.setInt("id_rent", rentNotification.getId().intValue());
-        contextTopic.createProducer().send(topicRents, msg);*/
+        contextTopic.createProducer().send(topicRents, msg);
     }
     
 }

@@ -49,7 +49,7 @@ public class MailManager {
         message.setSubject("Rent Contract");
         message.setText(msg);
 
-        //Transport.send(message);
+        Transport.send(message);
 
         System.out.println("Done");
     }
